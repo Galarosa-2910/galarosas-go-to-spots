@@ -1,0 +1,1 @@
+# galarosas-go-to-spots
