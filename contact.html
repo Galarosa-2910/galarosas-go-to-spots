@@ -19,13 +19,49 @@
   <main>
     <section>
       <h2>Get in Touch</h2>
-      <p>Have a spot recommendation, a question about any of the locations, or want to collaborate? Connect with me through the following channels:</p>
+      <p>Have a spot recommendation, a question about any of the featured destinations, or want to collaborate? Fill out the form below or connect via my direct links.</p>
 
+      <form action="#" method="post">
+        <fieldset>
+          <legend>Your details</legend>
+
+          <p>
+            <label for="name">Name</label><br>
+            <input type="text" id="name" name="name" required>
+          </p>
+
+          <p>
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" required>
+          </p>
+
+          <p>
+            <label for="subject">Subject</label><br>
+            <select id="subject" name="subject" required>
+              <option value="" disabled selected>Select a subject</option>
+              <option value="suggest-place">Suggest a Place</option>
+              <option value="correct-detail">Correct a Detail</option>
+              <option value="ask-question">Ask a Question</option>
+              <option value="other">Something Else</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="message">Message</label><br>
+            <textarea id="message" name="message" rows="5" cols="40" required></textarea>
+          </p>
+
+          <button type="submit">Send message</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <section>
+      <h2>Other Ways to Connect</h2>
       <ul>
         <li><strong>Email:</strong> <a href="mailto:johnmarco.galarosa@tup.edu.ph">johnmarco.galarosa@tup.edu.ph</a></li>
-        <li><strong>Phone:</strong> +63 928 734 3324</li>
+        <li><strong>Social Media:</strong> <a href="https://www.facebook.com/therareescapes">facebook.com/therareescapes</a></li>
         <li><strong>Location:</strong> Manila, Philippines</li>
-        <li><strong>Facebook:</strong> <a href="https://www.facebook.com/therareescapes">facebook.com/therareescapes</a></li>
       </ul>
     </section>
   </main>
