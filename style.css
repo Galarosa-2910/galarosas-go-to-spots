@@ -1,12 +1,12 @@
 /* 1. VARIABLES */
 :root {
-  --brand-color: #e06d53;       /* Warm terracotta accent */
-  --brand-hover: #c85339;       /* Deep burnt clay for hover */
-  --dark-ink: #f5f2eb;          /* Warm bone/linen text for high readability */
-  --muted-grey: #a8a29e;        /* Warm sandstone grey for descriptions */
-  --light-bg: #1c1917;          /* Warm charcoal stone background */
-  --surface-card: #292524;      /* Deep roasted espresso card surface */
-  --border-color: #44403c;      /* Earthy low-contrast border lines */
+  --brand: #e06d53;             
+  --brand-hover: #c85339;       
+  --dark-ink: #f5f2eb;          
+  --muted-grey: #a8a29e;        
+  --light-bg: #1c1917;          
+  --surface-card: #292524;      
+  --border-color: #44403c;      
   --white: #ffffff;
 }
 
@@ -42,11 +42,9 @@ header {
 
 header h1 {
   margin: 0 0 1rem 0;
-  color: var(--brand-color);
-  letter-spacing: 0.5px;
+  color: var(--brand);
 }
 
-/* Horizontal Nav Bar */
 nav ul {
   list-style: none;
   padding: 0;
@@ -68,7 +66,7 @@ nav a {
 
 nav a:hover,
 nav a:focus {
-  color: var(--brand-color);
+  color: var(--brand);
 }
 
 main {
@@ -87,20 +85,21 @@ footer {
   font-size: 0.9rem;
 }
 
-/* 4. COMPONENTS */
-.place-card,
-article {
+/* 4. PLACE CARDS COMPONENT */
+.place-card {
   background-color: var(--surface-card);
-  border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 24px;
+  padding: 20px;
   margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--brand);
 }
 
-.place-card h3,
-article h2 {
+.place-card .place-title {
   margin-top: 0;
-  color: var(--dark-ink);
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  color: var(--white);
 }
 
 .place-card p {
@@ -110,7 +109,7 @@ article h2 {
 .place-card a {
   display: inline-block;
   margin-top: 0.75rem;
-  color: var(--brand-color);
+  color: var(--brand);
   font-weight: 600;
   text-decoration: none;
 }
@@ -119,7 +118,16 @@ article h2 {
   text-decoration: underline;
 }
 
-/* Tables (Visitor Details) */
+/* Detail page article container */
+article {
+  background-color: var(--surface-card);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+}
+
+/* Specifications Table */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -138,7 +146,7 @@ th {
   color: var(--dark-ink);
 }
 
-/* 5. FORMS & FIELDSETS */
+/* 5. CONTACT & SUGGESTION FORM STYLING */
 fieldset {
   background-color: var(--surface-card);
   border: 1px solid var(--border-color);
@@ -151,7 +159,7 @@ legend {
   font-weight: 700;
   padding: 0 8px;
   font-size: 1.1rem;
-  color: var(--brand-color);
+  color: var(--brand);
 }
 
 label {
@@ -175,23 +183,25 @@ textarea {
   font-size: 1rem;
 }
 
+/* Radio & Checkbox Adjustments */
 input[type="radio"],
 input[type="checkbox"] {
+  width: auto;
   margin-right: 8px;
-  accent-color: var(--brand-color);
+  accent-color: var(--brand);
 }
 
-/* Accessible focus ring */
+/* Accessible Keyboard Focus Rings */
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-  outline: 3px solid var(--brand-color);
+  outline: 3px solid var(--brand);
   outline-offset: 2px;
 }
 
 button[type="submit"] {
-  background-color: var(--brand-color);
+  background-color: var(--brand);
   color: #1c1917;
   border: none;
   border-radius: 6px;
