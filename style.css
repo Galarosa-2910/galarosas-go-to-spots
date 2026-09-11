@@ -112,18 +112,23 @@ footer {
   font-size: 0.9rem;
 }
 
-/* 4. PLACE CARDS COMPONENT */
+/* 4. PLACE GRID & CARDS COMPONENT */
+.place-grid {
+  display: flex;
+  flex-wrap: wrap;              /* Wraps cards to subsequent lines */
+  gap: 24px;                    
+}
+
 .place-card {
+  flex: 1 1 240px;              /* Grow, shrink, target width 240px */
   background-color: var(--surface-card);
   border-radius: 8px;
   padding: 24px;
-  margin-bottom: 24px;
-
-  /* 1. Subtle outline around the entire card */
   border: 1px solid var(--border-color);
-
-  /* 2. Overrides the left side with the terracotta accent stripe */
   border-left: 5px solid var(--brand);
+  margin-bottom: 0;             /* Gap handles row spacing */
+  display: flex;
+  flex-direction: column;
 }
 
 .place-card .place-title {
@@ -145,9 +150,17 @@ footer {
   color: var(--muted-grey);
 }
 
+.place-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
 .place-card a {
   display: inline-block;
-  margin-top: 0.75rem;
+  margin-top: auto;             /* Aligns read more links at the bottom */
   color: var(--brand);
   font-weight: 600;
   text-decoration: none;
@@ -156,7 +169,6 @@ footer {
 .place-card a:hover {
   text-decoration: underline;
 }
-
 /* Detail page article container */
 article {
   background-color: var(--surface-card);
