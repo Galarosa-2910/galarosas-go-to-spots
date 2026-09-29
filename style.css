@@ -32,8 +32,86 @@ img {
   border-radius: 6px;
 }
 
-/* 3. LAYOUT REGIONS */
-header,
+/* 3. LAYOUT REGIONS (Page Grid Skeleton & Flex Components) */
+
+/* Overall Page Skeleton */
+.page {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-areas:
+    "masthead masthead"
+    "side     main"
+    "foot     foot";
+  gap: 16px;
+  min-height: 100vh;
+}
+
+header.site-header,
+header { 
+  grid-area: masthead; 
+}
+
+aside.sidebar,
+aside { 
+  grid-area: side; 
+}
+
+main { 
+  grid-area: main; 
+  max-width: 100%;
+  margin: 0;
+  padding: 0 1.5rem 1.5rem 0;
+}
+
+footer { 
+  grid-area: foot; 
+  margin-top: 0;
+}
+
+/* Sidebar Component */
+.sidebar {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-left: 1.5rem;
+}
+
+.sidebar h2 {
+  font-size: 1.15rem;
+  color: var(--brand);
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar a {
+  color: var(--dark-ink);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sidebar a:hover {
+  color: var(--brand);
+}
+
+.sidebar p {
+  color: var(--muted-grey);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+}
+
+/* Existing Header Flexbox */
 .site-header {
   display: flex;
   justify-content: space-between;
@@ -43,25 +121,21 @@ header,
   border-bottom: 1px solid var(--border-color);
 }
 
-header h1,
 .site-header h1 {
   margin: 0;
   font-size: 1.5rem;
   color: var(--brand);
 }
 
-/* Nav Flex Container */
-.site-header nav ul,
-nav ul {
+.site-header nav ul {
   display: flex;
-  align-items: center;
-  gap: 20px;            /* Modern flex gap replaces li margins */
+  gap: 20px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-nav a {
+.site-header nav a {
   text-decoration: none;
   color: var(--dark-ink);
   font-weight: 600;
@@ -69,28 +143,22 @@ nav a {
   transition: color 0.2s ease;
 }
 
-nav a:hover,
-nav a:focus {
+.site-header nav a:hover,
+.site-header nav a:focus {
   color: var(--brand);
 }
 
-main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-}
-
-/* Centered Banner */
+/* Existing Hero Banner Flexbox Centering */
 .hero-banner {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 160px;    
+  min-height: 160px;
   background-color: var(--surface-card);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   padding: 1.5rem;
 }
 
