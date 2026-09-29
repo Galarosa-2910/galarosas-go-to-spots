@@ -1,4 +1,6 @@
-/* 1. VARIABLES */
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
 :root {
   --brand: #e06d53;             
   --brand-hover: #c85339;       
@@ -10,7 +12,9 @@
   --white: #ffffff;
 }
 
-/* 2. BASE STYLES */
+/* ==========================================================================
+   2. BASE STYLES & OVERFLOW RESETS
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -19,10 +23,12 @@
 
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   color: var(--dark-ink);
   background-color: var(--light-bg);
+  overflow-x: hidden;           /* Prevents mobile horizontal scrolling */
 }
 
 img {
@@ -32,16 +38,17 @@ img {
   border-radius: 6px;
 }
 
-/* 3. LAYOUT REGIONS (Page Grid Skeleton & Flex Components) */
-
-/* Overall Page Skeleton */
+/* ==========================================================================
+   3. MOBILE-FIRST PAGE SKELETON (Base: Single Column, Stacked)
+   ========================================================================== */
 .page {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "masthead masthead"
-    "side     main"
-    "foot     foot";
+    "masthead"
+    "main"
+    "side"                      /* Visitors reach guide recommendations first */
+    "foot";
   gap: 16px;
   min-height: 100vh;
 }
@@ -54,18 +61,83 @@ header {
 aside.sidebar,
 aside { 
   grid-area: side; 
+  margin: 0 1rem;
 }
 
 main { 
   grid-area: main; 
   max-width: 100%;
   margin: 0;
-  padding: 0 1.5rem 1.5rem 0;
+  padding: 0 1rem;
+  min-width: 0;                 /* Prevents grid blowout on narrow screens */
 }
 
 footer { 
   grid-area: foot; 
-  margin-top: 0;
+  margin-top: 1rem;
+}
+
+/* Header & Nav: Mobile Stacking */
+.site-header {
+  display: flex;
+  flex-direction: column;       /* Stack site title over nav on mobile */
+  align-items: center;
+  gap: 12px;
+  background-color: var(--surface-card);
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: var(--brand);
+}
+
+.site-header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-header nav a {
+  text-decoration: none;
+  color: var(--dark-ink);
+  font-weight: 600;
+  padding: 0.4rem 0.6rem;
+  transition: color 0.2s ease;
+}
+
+.site-header nav a:hover,
+.site-header nav a:focus {
+  color: var(--brand);
+}
+
+/* Centered Hero Banner (Horizontal + Vertical Centering) */
+.hero-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 140px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+}
+
+.hero-banner p {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--dark-ink);
+  max-width: 650px;
 }
 
 /* Sidebar Component */
@@ -73,8 +145,7 @@ footer {
   background-color: var(--surface-card);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 20px;
-  margin-left: 1.5rem;
+  padding: 16px;
 }
 
 .sidebar h2 {
@@ -87,7 +158,7 @@ footer {
 .sidebar ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1.25rem 0;
 }
 
 .sidebar li {
@@ -111,98 +182,41 @@ footer {
   margin: 0 0 1rem 0;
 }
 
-/* Existing Header Flexbox */
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--surface-card);
-  padding: 1.25rem 2rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.site-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: var(--brand);
-}
-
-.site-header nav ul {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.site-header nav a {
-  text-decoration: none;
-  color: var(--dark-ink);
-  font-weight: 600;
-  padding: 0.5rem 0.75rem;
-  transition: color 0.2s ease;
-}
-
-.site-header nav a:hover,
-.site-header nav a:focus {
-  color: var(--brand);
-}
-
-/* Existing Hero Banner Flexbox Centering */
-.hero-banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 160px;
-  background-color: var(--surface-card);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-}
-
-.hero-banner p {
-  margin: 0;
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--dark-ink);
-  max-width: 650px;
-}
-
 footer {
   background-color: var(--surface-card);
   border-top: 1px solid var(--border-color);
   text-align: center;
-  padding: 1.5rem;
-  margin-top: 3rem;
+  padding: 1.25rem;
   color: var(--muted-grey);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
-/* 4. PLACE GRID & CARDS COMPONENT */
+/* ==========================================================================
+   4. PLACE GRID & CARDS COMPONENT
+   ========================================================================== */
 .place-grid {
   display: flex;
-  flex-wrap: wrap;              /* Wraps cards to subsequent lines */
-  gap: 24px;                    
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .place-card {
-  flex: 1 1 240px;              /* Grow, shrink, target width 240px */
+  flex: 1 1 240px;              /* Auto-wraps down cleanly on phones */
   background-color: var(--surface-card);
   border-radius: 8px;
-  padding: 24px;
+  padding: 20px;
   border: 1px solid var(--border-color);
   border-left: 5px solid var(--brand);
-  margin-bottom: 0;             /* Gap handles row spacing */
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .place-card .place-title {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   color: var(--white);
 }
 
@@ -220,7 +234,7 @@ footer {
 
 .place-card img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
   border-radius: 6px;
   margin-bottom: 1rem;
@@ -228,7 +242,7 @@ footer {
 
 .place-card a {
   display: inline-block;
-  margin-top: auto;             /* Aligns read more links at the bottom */
+  margin-top: auto;
   color: var(--brand);
   font-weight: 600;
   text-decoration: none;
@@ -237,13 +251,15 @@ footer {
 .place-card a:hover {
   text-decoration: underline;
 }
-/* Detail page article container */
+
+/* Detail Page Article Container */
 article {
   background-color: var(--surface-card);
   border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 24px;
+  padding: 20px;
+  margin-bottom: 20px;
   border: 1px solid var(--border-color);
+  min-width: 0;
 }
 
 /* Specifications Table */
@@ -252,10 +268,11 @@ table {
   border-collapse: collapse;
   background-color: var(--surface-card);
   margin: 1.5rem 0;
+  font-size: 0.9rem;
 }
 
 th, td {
-  padding: 0.75rem;
+  padding: 0.65rem;
   border: 1px solid var(--border-color);
   text-align: left;
 }
@@ -265,19 +282,21 @@ th {
   color: var(--dark-ink);
 }
 
-/* 5. CONTACT & SUGGESTION FORM STYLING */
+/* ==========================================================================
+   5. CONTACT & SUGGESTION FORM STYLING
+   ========================================================================== */
 fieldset {
   background-color: var(--surface-card);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 24px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 legend {
   font-weight: 700;
   padding: 0 8px;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--brand);
 }
 
@@ -302,7 +321,6 @@ textarea {
   font-size: 1rem;
 }
 
-/* Radio & Checkbox Adjustments */
 input[type="radio"],
 input[type="checkbox"] {
   width: auto;
@@ -310,7 +328,6 @@ input[type="checkbox"] {
   accent-color: var(--brand);
 }
 
-/* Accessible Keyboard Focus Rings */
 input:focus,
 select:focus,
 textarea:focus,
@@ -328,10 +345,62 @@ button[type="submit"] {
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
+  width: 100%;                  /* Full width button on phone */
   transition: background-color 0.2s ease;
 }
 
 button[type="submit"]:hover {
   background-color: var(--brand-hover);
   color: var(--white);
+}
+
+/* ==========================================================================
+   6. RESPONSIVE ENHANCEMENTS (Tablet & Desktop: min-width: 700px)
+   ========================================================================== */
+@media (min-width: 700px) {
+  .page {
+    grid-template-columns: 220px 1fr;
+    grid-template-areas:
+      "masthead masthead"
+      "side     main"
+      "foot     foot";
+    gap: 24px;
+  }
+
+  .site-header {
+    flex-direction: row;        /* Restores horizontal header on wider screens */
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+  }
+
+  .site-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .site-header nav ul {
+    gap: 20px;
+  }
+
+  aside.sidebar,
+  aside {
+    margin-left: 2rem;
+    margin-right: 0;
+    padding: 20px;
+  }
+
+  main {
+    padding: 0 2rem 2rem 0;
+  }
+
+  .place-grid {
+    gap: 24px;
+  }
+
+  .place-card img {
+    height: 200px;
+  }
+
+  button[type="submit"] {
+    width: auto;                /* Reverts to natural button width on desktop */
+  }
 }
